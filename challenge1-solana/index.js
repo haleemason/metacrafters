@@ -56,17 +56,6 @@ const airDropSol = async () => {
     }
 };
 
-const fromAirDropSignature = await connection.requestAirdrop(
-    new PublicKey(myWallet.publicKey),
-    2 * LAMPORTS_PER_SOL
-);
-
-// Show the wallet balance before and after airdropping SOL
-const mainFunction = async () => {
-    await getWalletBalance();
-    await airDropSol();
-    await getWalletBalance();
-}
 
 const {argv} = require('process')
 // Take the account address as a CLI parameter.
@@ -81,5 +70,19 @@ const argv = key => {
     
     return value.replace( `--${ key }=` , '' );
   }
+
 // If invoked with node index.js --key then argv('key') will return true
+const fromAirDropSignature = await connection.requestAirdrop(
+    new PublicKey(process.argv[i]),
+    2 * LAMPORTS_PER_SOL
+);
+
+
+// Show the wallet balance before and after airdropping SOL
+const mainFunction = async () => {
+    await getWalletBalance();
+    await airDropSol();
+    await getWalletBalance();
+}
+
 mainFunction();
