@@ -30,9 +30,9 @@ const transferSol = async() => {
 
     // Other things to try: 
     // 1) Form array from userSecretKey
-    // const from = Keypair.fromSecretKey(Uint8Array.from(userSecretKey));
+    const from = Keypair.fromSecretKey(Uint8Array.from(userSecretKey));
     // 2) Make a new Keypair (starts with 0 SOL)
-    // const from = Keypair.generate();
+    const from = Keypair.generate();
 
     // Generate another Keypair (account we'll be sending to)
     const to = Keypair.generate();
